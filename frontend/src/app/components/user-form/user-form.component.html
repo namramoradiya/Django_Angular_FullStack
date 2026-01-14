@@ -1,1 +1,33 @@
-<p>user-form works!</p>
+<h2>User Form</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+    Name is required
+  </div>
+  <br> <br> <br>
+  <label>Email</label>
+  <input type="email" formControlName="email" />
+  <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+    Enter valid email
+  </div>
+  <br> <br> <br>
+  <label>Age</label>
+  <input type="number" formControlName="age" />
+  <div *ngIf="userForm.get('age')?.touched && userForm.get('age')?.invalid">
+    Age must be greater than 0
+  </div>
+  <br> <br> <br>
+  <label>Department</label>
+  <input type="text" formControlName="department" />
+  <div *ngIf="userForm.get('department')?.touched && userForm.get('department')?.invalid">
+    Department is required
+  </div>
+  <br> <br> <br>
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>
+
+<p style="color: green" *ngIf="successMessage">{{ successMessage }}</p>
+<p style="color: red" *ngIf="errorMessage">{{ errorMessage }}</p>
